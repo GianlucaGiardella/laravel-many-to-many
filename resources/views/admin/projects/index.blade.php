@@ -29,12 +29,12 @@
                     </td>
                     <td>{{ implode(', ', $project->technologies->pluck('name')->all()) }}</td>
                     <td>
-                        <a class="btn btn-primary"
-                            href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
-                        <a class="btn btn-warning"
-                            href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
-                        <button class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            data-id="{{ $project->id }}">Delete</button>
+                        <a class="btn btn-outline-info"
+                            href="{{ route('admin.projects.show', ['project' => $project->id]) }}">&#8505;</a>
+                        <a class="btn btn-outline-light"
+                            href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">✏️</a>
+                        <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" data-id="{{ $project->id }}">&#128465;</button>
                     </td>
                 </tr>
             @endforeach

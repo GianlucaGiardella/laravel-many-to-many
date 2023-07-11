@@ -17,10 +17,11 @@
                     <th scope="row">{{ $type->id }}</th>
                     <td>{{ $type->name }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('admin.types.show', ['type' => $type->id]) }}">View</a>
-                        <a class="btn btn-warning" href="{{ route('admin.types.edit', ['type' => $type->id]) }}">Edit</a>
-                        {{-- <button class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            data-id="{{ $type->id }}">Delete</button> --}}
+                        <a class="btn btn-outline-info"
+                            href="{{ route('admin.types.show', ['type' => $type->id]) }}">&#8505;</a>
+                        <a class="btn btn-outline-light" href="{{ route('admin.types.edit', ['type' => $type->id]) }}">✏️</a>
+                        {{-- <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            data-id="{{ $type->id }}">&#128465;</button> --}}
                     </td>
                 </tr>
             @endforeach

@@ -1,8 +1,8 @@
 @php $user = Auth::user(); @endphp
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('guests.home') }}">Boolpress</a>
+    <div class="container">
+        <a class="navbar-brand" href="{{ route('guests.home') }}">Boolfolio</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,13 +43,13 @@
                     aria-expanded="false">
                     {{ $user->name }}
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Edit profile</a></li>
 
                     <li>
-                        <form action="{{ route('logout') }}" method="post">
+                        <form action="{{ route('logout') }}" method="post" class="dropdown-item">
                             @csrf
-                            <button class="btn">Logout</button>
+                            <button class="btn p-0">Logout</button>
                         </form>
                     </li>
                 </ul>
