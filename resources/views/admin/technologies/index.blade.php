@@ -4,7 +4,7 @@
     @if (session('delete_success'))
         @php $type = session('delete_success') @endphp
         <div class="alert alert-danger">
-            Technology "{{ $technology->name }}" deleted.
+            Technology "{{ $technology->title }}" deleted.
         </div>
     @endif
 
