@@ -5,7 +5,7 @@
         <div class="card-body">
             <div class="d-inline-block">
                 <h1>{{ $technology->name }}</h1>
-                <hr class="border border-2 rounded border-light">
+                <hr class="rounded">
             </div>
 
             <h3>Projects using {{ $technology->name }}:</h3>

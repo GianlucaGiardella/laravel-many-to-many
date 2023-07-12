@@ -12,24 +12,24 @@
 
         <div class="card-body">
             <div class="d-inline-block">
-                <h1>Projects</h1>
-                <hr class="border border-2 rounded border-light">
+                <h1 class="text-light">Projects</h1>
+                <hr class="rounded">
             </div>
 
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Technologies</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col" class="text-light">ID</th>
+                        <th scope="col" class="text-light">Title</th>
+                        <th scope="col" class="text-light">Type</th>
+                        <th scope="col" class="text-light">Technologies</th>
+                        <th scope="col" class="text-light">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($projects as $project)
                         <tr>
-                            <th scope="row">{{ $project->id }}</th>
+                            <th scope="row"><span class="text-gradient">{{ $project->id }}</span></th>
                             <td>{{ $project->title }}</td>
                             <td><a
                                     href="{{ route('admin.types.show', ['type' => $project->type]) }}">{{ $project->type->name }}</a>

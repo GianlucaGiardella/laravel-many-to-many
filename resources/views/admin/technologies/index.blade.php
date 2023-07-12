@@ -12,7 +12,7 @@
         <div class="card-body">
             <div class="d-inline-block">
                 <h1>Technologies</h1>
-                <hr class="border border-2 rounded border-light">
+                <hr class="rounded">
             </div>
 
             <table class="table table-striped">

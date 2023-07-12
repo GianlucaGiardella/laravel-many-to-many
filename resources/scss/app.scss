@@ -1,1 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
+
+hr {
+    height: 5px;
+    border: 0;
+    opacity: unset;
+    background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(#8e2de2, #4a00e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

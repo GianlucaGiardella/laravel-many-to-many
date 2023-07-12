@@ -9,9 +9,9 @@
     @vite('resources/js/app.js')
 </head>
 
-<body data-bs-theme="dark">
+<body data-bs-theme="dark" style="background-image: linear-gradient(to right, #8e2de2, #4a00e0);">
     @include('admin.includes.header')
-    <main class="container">
+    <main class="container px-5">
         @yield('contents')
     </main>
     @include('admin.includes.footer')

@@ -5,7 +5,7 @@
         <div class="card-body">
             <div class="d-inline-block">
                 <h1>Add New Technology</h1>
-                <hr class="border border-2 rounded border-light">
+                <hr class="rounded">
             </div>
 
             <form method="post" action="{{ route('admin.technologies.store') }}" novalidate>

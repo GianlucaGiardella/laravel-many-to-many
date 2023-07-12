@@ -5,8 +5,8 @@
         <div class="card-body">
 
             <div class="d-inline-block">
-                <h2>Project N.{{ $project->id }}</h2>
-                <hr class="border border-2 rounded border-light">
+                <h2 class="text-light">Project N.{{ $project->id }}</h2>
+                <hr class="rounded">
             </div>
 
             <div class="mt-4">
