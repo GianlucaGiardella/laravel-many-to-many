@@ -17,11 +17,16 @@ class ProjectsTableSeeder extends Seeder
         $technolgies = Technology::all()->pluck('id');
 
         for ($i = 0; $i < 50; $i++) {
+            $title = $faker->words(rand(2, 10), true);
+            $slug = Project::slugger($title);
+
             $project = Project::create([
-                'type_id'     => $faker->randomElement($types)->id,
-                'title'     => $faker->words(rand(2, 10), true),
-                'url_image' => 'https://picsum.photos/id/' . rand(1, 270) . '/500/400',
-                'content'   => $faker->paragraphs(rand(2, 20), true),
+                'type_id'       => $faker->randomElement($types)->id,
+                'title'         => $title,
+                'slug'          => $slug,
+                'author'        => 'Gianluca Giardella',
+                'github_url'    => 'https://github.com/GianlucaGiardella/' . $slug,
+                'description'   => $faker->paragraphs(rand(2, 20), true),
             ]);
 
             $project->technologies()->sync($faker->randomElements($technolgies, null));

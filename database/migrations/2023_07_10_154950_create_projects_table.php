@@ -12,8 +12,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('title', 100);
-            $table->string('url_image', 400);
-            $table->text('content');
+            $table->string('author', 100);
+            $table->string('slug', 100);
+            $table->string('github_url', 400);
+            $table->text('description');
 
             $table->timestamps();
         });
