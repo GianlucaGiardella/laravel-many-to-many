@@ -25,7 +25,7 @@
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
-                    <td><a href="{{ route('admin.types.show', ['type' => $project]) }}">{{ $project->type->name }}</a>
+                    <td><a href="{{ route('admin.types.show', ['type' => $project->type]) }}">{{ $project->type->name }}</a>
                     </td>
                     <td>
                         @foreach ($project->technologies as $technology)
