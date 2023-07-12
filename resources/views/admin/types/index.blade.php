@@ -29,8 +29,10 @@
                         <a class="btn btn-outline-info"
                             href="{{ route('admin.types.show', ['type' => $type->id]) }}">&#8505;</a>
                         <a class="btn btn-outline-light" href="{{ route('admin.types.edit', ['type' => $type->id]) }}">✏️</a>
-                        <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal" data-id="{{ $type->id }}">&#128465;</button>
+                        @if ($type->id != 1)
+                            <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal" data-id="{{ $type->id }}">&#128465;</button>
+                        @endif
                     </td>
                 </tr>
             @endforeach

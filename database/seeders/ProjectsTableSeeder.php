@@ -13,7 +13,7 @@ class ProjectsTableSeeder extends Seeder
 {
     public function run(Faker $faker)
     {
-        $types = Type::all();
+        $types = Type::all()->except(1);
         $technolgies = Technology::all()->pluck('id');
 
         for ($i = 0; $i < 50; $i++) {

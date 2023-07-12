@@ -13,6 +13,10 @@ class TypesTableSeeder extends Seeder
     {
         $types = [
             [
+                'name'          => 'No Type',
+                'description'   => 'This Project doesn\'t have a type',
+            ],
+            [
                 'name'          => 'Front-End',
                 'description'   => $faker->words(rand(20, 40), true),
             ],
