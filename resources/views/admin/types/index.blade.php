@@ -1,6 +1,13 @@
 @extends('admin.layouts.base')
 
 @section('contents')
+    @if (session('delete_success'))
+        @php $type = session('delete_success') @endphp
+        <div class="alert alert-danger">
+            Type "{{ $type->name }}" deleted
+        </div>
+    @endif
+
     <h1>Types</h1>
 
     <table class="table table-striped">
@@ -8,6 +15,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
+                <th scope="col">Count</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -16,17 +24,18 @@
                 <tr>
                     <th scope="row">{{ $type->id }}</th>
                     <td>{{ $type->name }}</td>
+                    <td>{{ count($type->projects) }}</td>
                     <td>
                         <a class="btn btn-outline-info"
                             href="{{ route('admin.types.show', ['type' => $type->id]) }}">&#8505;</a>
                         <a class="btn btn-outline-light" href="{{ route('admin.types.edit', ['type' => $type->id]) }}">✏️</a>
-                        {{-- <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            data-id="{{ $type->id }}">&#128465;</button> --}}
+                        <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" data-id="{{ $type->id }}">&#128465;</button>
                     </td>
                 </tr>
             @endforeach
 
-            {{-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -43,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
         </tbody>
     </table>

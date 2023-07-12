@@ -25,23 +25,26 @@
                     @enderror
                 </div>
 
-                {{-- <div class="mb-4">
-                    <label for="url_image" class="form-label"><h4 class="my-0">Image</h4></label>
-                    <input type="url" class="form-control @error('url_image') is-invalid @enderror" id="url_image"
-                        name="url_image" value="{{ old('url_image', $project->url_image) }}">
-                    @error('url_image')
+                <div class="mb-4">
+                    <label for="author" class="form-label">
+                        <h4 class="my-0">Author</h4>
+                    </label>
+                    <input type="url" class="form-control @error('author') is-invalid @enderror" id="author"
+                        name="author" value="{{ old('author', $project->author) }}">
+                    @error('author')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+                </div>
 
                 <div class="mb-4">
-                    <label for="content" class="form-label">
-                        <h4 class="my-0">Content</h4>
+                    <label for="github_url" class="form-label">
+                        <h4 class="my-0">GitHub URL</h4>
                     </label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" rows="5" name="content">{{ old('content', $project->content) }}</textarea>
-                    @error('content')
+                    <input type="url" class="form-control @error('github_url') is-invalid @enderror" id="github_url"
+                        name="github_url" value="{{ old('github_url', $project->github_url) }}">
+                    @error('github_url')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -76,6 +79,19 @@
                                 for="technology{{ $technology->id }}">{{ $technology->name }}</label>
                         </div>
                     @endforeach
+                </div>
+
+                <div class="mb-4">
+                    <label for="description" class="form-label">
+                        <h4 class="my-0">Description</h4>
+                    </label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="5"
+                        name="description">{{ old('description', $project->description) }}</textarea>
+                    @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <button class="btn btn-primary">Update</button>

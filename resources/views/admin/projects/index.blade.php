@@ -6,7 +6,7 @@
     @if (session('delete_success'))
         @php $project = session('delete_success') @endphp
         <div class="alert alert-danger">
-            Project "{{ $project->title }}" deleted.
+            Project "{{ $project->title }}" deleted
         </div>
     @endif
 
@@ -25,16 +25,22 @@
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
-                    <td><a href="{{ route('admin.types.show', ['type' => $project->type]) }}">{{ $project->type->name }}</a>
+                    <td><a href="{{ route('admin.types.show', ['type' => $project]) }}">{{ $project->type->name }}</a>
                     </td>
-                    <td>{{ implode(', ', $project->technologies->pluck('name')->all()) }}</td>
+                    <td>
+                        @foreach ($project->technologies as $technology)
+                            <a
+                                href="{{ route('admin.technologies.show', ['technology' => $technology]) }}">{{ $technology->name }}</a>
+                            {{ !$loop->last ? '|' : '' }}
+                        @endforeach
+                    </td>
                     <td>
                         <a class="btn btn-outline-info"
-                            href="{{ route('admin.projects.show', ['project' => $project->id]) }}">&#8505;</a>
+                            href="{{ route('admin.projects.show', ['project' => $project]) }}">&#8505;</a>
                         <a class="btn btn-outline-light"
-                            href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">✏️</a>
+                            href="{{ route('admin.projects.edit', ['project' => $project]) }}">✏️</a>
                         <button class="btn btn-outline-warning js-delete" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal" data-id="{{ $project->id }}">&#128465;</button>
+                            data-bs-target="#deleteModal" data-id="{{ $project->slug }}">&#128465;</button>
                     </td>
                 </tr>
             @endforeach
@@ -48,8 +54,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                             <form action=""
-                                data-template="{{ route('admin.projects.destroy', ['project' => '*****']) }}" method="post"
-                                class="d-inline-block" id="confirm-delete">
+                                data-template="{{ route('admin.projects.destroy', ['project' => '*****']) }}"
+                                method="post" class="d-inline-block" id="confirm-delete">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-danger">Yes</button>

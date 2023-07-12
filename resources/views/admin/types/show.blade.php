@@ -7,14 +7,22 @@
                 <h1>{{ $type->name }}</h1>
                 <hr class="border border-2 rounded border-light">
             </div>
-            <p>{{ $type->description }}</p>
 
-            <h3>Type's Posts</h3>
-            <ul>
-                @foreach ($type->projects as $project)
-                    <li><a href="{{ route('admin.projects.show', ['project' => $project]) }}">{{ $project->title }}</a></li>
-                @endforeach
-            </ul>
+            <div class="mt-3">
+                <h3>Description</h3>
+                <p>{{ $type->description }}</p>
+            </div>
+
+            <div class="mt-4">
+                <h3>Latest Posts</h3>
+                <ul>
+                    @foreach ($type->projects()->orderBy('created_at', 'DESC')->get() as $project)
+                        <li class="mb-2"><a
+                                href="{{ route('admin.projects.show', ['project' => $project]) }}">{{ $project->title }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 @endsection

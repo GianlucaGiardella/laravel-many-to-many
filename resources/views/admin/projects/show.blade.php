@@ -9,11 +9,43 @@
                 <hr class="border border-2 rounded border-light">
             </div>
 
-            <h1>{{ $project->title }}</h1>
-            <h3>Category: {{ $project->type->name }}</h3>
-            <h3>Technologies: {{ implode(', ', $project->technologies->pluck('name')->all()) }}</h3>
-            {{-- <img src="{{ $project->url_image }}" alt="{{ $project->title }}"> --}}
-            <p>Description: {{ $project->content }}</p>
+            <div class="mt-4">
+                <h3 class="text-light d-inline-block">Project Title: </h3>
+                <h1 class="d-inline-block">{{ $project->title }}</h1>
+            </div>
+
+            <div class="mt-4">
+                <h3 class="text-light d-inline-block">Author: </h3>
+                <h2 class="d-inline-block">{{ $project->author }}</h2>
+            </div>
+
+            <div class="mt-4">
+                <h3 class="text-light d-inline-block">GitHub URL: </h3>
+                <h3 class="d-inline-block"><a href="{{ $project->github_url }}">{{ $project->github_url }}</a></h3>
+            </div>
+
+            <div class="mt-4">
+                <h3 class="text-light d-inline-block">Category: </h3>
+                <h3 class="d-inline-block">
+                    <a href="{{ route('admin.types.show', ['type' => $project->type]) }}">{{ $project->type->name }}</a>
+                </h3>
+            </div>
+
+            <div class="mt-4">
+                <h3 class="text-light d-inline-block">Technologies: </h3>
+                <h3 class="d-inline-block">
+                    @foreach ($project->technologies as $technology)
+                        <a
+                            href="{{ route('admin.technologies.show', ['technology' => $technology]) }}">{{ $technology->name }}</a>
+                        {{ !$loop->last ? '|' : '' }}
+                    @endforeach
+                </h3>
+            </div>
+
+            <div class="mt-4">
+                <h3 class="text-light">Description: </h3>
+                <p>{{ $project->description }}</p>
+            </div>
 
         </div>
     </div>
