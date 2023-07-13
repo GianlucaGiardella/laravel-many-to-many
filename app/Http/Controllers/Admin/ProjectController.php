@@ -7,13 +7,15 @@ use App\Models\Project;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
     private $validations = [
-        'title'                 => 'required|string|min:5|max:100',
+        'title'                 => 'required|string|min:5|max:80',
         'type_id'               => 'required|integer|exists:types,id',
         'author'                => 'required|string|min:5|max:100',
+        'image'                 => 'nullable|image|max:1024',
         'github_url'            => 'required|url|max:400',
         'description'           => 'required|string',
         'technologies'          => 'nullable|array',
@@ -49,13 +51,16 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
+        $imagePath = Storage::put('uploads', $data['image']);
+
         $newProject = new Project();
-        $newProject->title = $data['title'];
-        $newProject->type_id = $data['type_id'];
-        $newProject->author = $data['author'];
-        $newProject->slug = Project::slugger($data['title']);
-        $newProject->github_url = $data['github_url'];
-        $newProject->description = $data['description'];
+        $newProject->title          = $data['title'];
+        $newProject->type_id        = $data['type_id'];
+        $newProject->author         = $data['author'];
+        $newProject->image          = $imagePath;
+        $newProject->slug           = Project::slugger($data['title']);
+        $newProject->github_url     = $data['github_url'];
+        $newProject->description    = $data['description'];
         $newProject->save();
 
         $newProject->technologies()->sync($data['technologies'] ?? []);
@@ -88,11 +93,21 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
-        $project->title = $data['title'];
-        $project->type_id = $data['type_id'];
-        $project->author = $data['author'];
-        $project->github_url = $data['github_url'];
-        $project->description = $data['description'];
+        if ($data['image']) {
+            $imagePath = Storage::put('uploads', $data['image']);
+
+            if ($project->image) {
+                Storage::delete($project->image);
+            }
+
+            $project->image = $imagePath;
+        }
+
+        $project->title             = $data['title'];
+        $project->type_id           = $data['type_id'];
+        $project->author            = $data['author'];
+        $project->github_url        = $data['github_url'];
+        $project->description       = $data['description'];
         $project->update();
 
         $project->technologies()->sync($data['technologies'] ?? []);
@@ -103,6 +118,10 @@ class ProjectController extends Controller
     public function destroy($slug)
     {
         $project = Project::where('slug', $slug)->firstOrFail();
+
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
 
         $project->technologies()->detach();
         $project->delete();

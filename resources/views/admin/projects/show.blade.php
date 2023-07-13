@@ -19,6 +19,14 @@
                 <h2 class="d-inline-block">{{ $project->author }}</h2>
             </div>
 
+            @if ($project->image)
+                <div class="mt-4">
+                    <h3 class="text-light">Image: </h3>
+                    <img class="d-block" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                        style="max-width: 600px">
+                </div>
+            @endif
+
             <div class="mt-4">
                 <h3 class="text-light d-inline-block">GitHub URL: </h3>
                 <h3 class="d-inline-block"><a href="{{ $project->github_url }}">{{ $project->github_url }}</a></h3>

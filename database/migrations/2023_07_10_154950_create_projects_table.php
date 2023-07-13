@@ -13,7 +13,8 @@ return new class extends Migration
 
             $table->string('title', 100);
             $table->string('author', 100);
-            $table->string('slug', 100);
+            $table->string('image', 400)->nullable();
+            $table->string('slug', 100)->unique();
             $table->string('github_url', 400);
             $table->text('description');
 
